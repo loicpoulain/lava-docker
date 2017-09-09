@@ -29,6 +29,7 @@ RUN echo 'lava-server   lava-server/instance-name string lava-docker-instance' |
  qemu-system-arm \
  qemu-system-i386 \
  qemu-kvm \
+ e2fsprogs \
  ser2net \
  u-boot-tools \
  python-setproctitle \
