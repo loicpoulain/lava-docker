@@ -1,0 +1,6 @@
+{% extends 'beaglebone-black.jinja2' %}
+{% set exclusive = 'True' %}
+{% set connection_command = 'telnet 172.17.0.1 2000' %}
+{% set hard_reset_command = '/bin/true' %}
+{% set power_off_command = '/bin/true' %}
+{% set power_on_command = '/bin/true' %}

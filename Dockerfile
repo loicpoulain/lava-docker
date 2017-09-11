@@ -64,10 +64,13 @@ RUN /start.sh \
  && sudo lava-server manage workers add worker0 \
  && lava-server manage device-types add qemu \
  && lava-server manage devices add --device-type qemu --worker worker0 qemu0 \
+ && lava-server manage device-types add beaglebone-black \
+ && lava-server manage devices add --device-type beaglebone-black --worker worker0 bbb0 \
  && /stop.sh
 
 # Add device dictionnaries
 COPY configs/qemu0.jinja2 /etc/lava-server/dispatcher-config/devices/qemu0.jinja2
+COPY configs/bbb0.jinja2 /etc/lava-server/dispatcher-config/devices/bbb0.jinja2
 
 COPY configs/tftpd-hpa /etc/default/tftpd-hpa
 
