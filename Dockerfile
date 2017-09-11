@@ -59,6 +59,16 @@ RUN /start.sh \
  && cd /root/lava-server && /root/lava-server/share/debian-dev-build.sh -p lava-server \
  && /stop.sh
 
+# Add worker0 and devices
+RUN /start.sh \
+ && sudo lava-server manage workers add worker0 \
+ && lava-server manage device-types add qemu \
+ && lava-server manage devices add --device-type qemu --worker worker0 qemu0 \
+ && /stop.sh
+
+# Add device dictionnaries
+COPY configs/qemu0.jinja2 /etc/lava-server/dispatcher-config/devices/qemu0.jinja2
+
 COPY configs/tftpd-hpa /etc/default/tftpd-hpa
 
 EXPOSE 69/udp 80 3079 5555 5556
