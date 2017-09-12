@@ -16,10 +16,9 @@ sh run-docker.sh
 ```
 
 ## Additional Setup
-In order for TFTP requests to find their way back to the running container, you will need to describe the host IP address to the LAVA master node. You can to create a yaml file on the LAVA master node as described below.
-
+In order for TFTP requests to find their way back to the running container, you will need to describe the host IP address to the LAVA master node.
 ```
-echo "dispatcher_ip: <master host ip" > /etc/lava-server/dispatcher.d/<lava-master-hostname>.yaml
+for now you can set your HOST IP in run-docker.sh
 ```
 
 ## Security
