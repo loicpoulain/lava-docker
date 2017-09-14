@@ -33,6 +33,7 @@ RUN echo 'lava-server   lava-server/instance-name string lava-docker-instance' |
  ser2net \
  u-boot-tools \
  python-setproctitle \
+ nfs-kernel-server \
  && a2enmod proxy \
  && a2enmod proxy_http \
  && a2dissite 000-default \
@@ -66,11 +67,17 @@ RUN /start.sh \
  && lava-server manage devices add --device-type qemu --worker worker0 qemu0 \
  && lava-server manage device-types add beaglebone-black \
  && lava-server manage devices add --device-type beaglebone-black --worker worker0 bbb0 \
+ && lava-server manage device-types add dragonboard-410c-uboot \
+ && lava-server manage devices add --device-type dragonboard-410c-uboot --worker worker0 db410c-uboot0 \
  && /stop.sh
+
+# Add device-types
+COPY configs/dragonboard-410c-uboot.jinja2 /etc/lava-server/dispatcher-config/devices/dragonboard-410c-uboot.jinja2
 
 # Add device dictionnaries
 COPY configs/qemu0.jinja2 /etc/lava-server/dispatcher-config/devices/qemu0.jinja2
 COPY configs/bbb0.jinja2 /etc/lava-server/dispatcher-config/devices/bbb0.jinja2
+COPY configs/db410c-uboot0.jinja2 /etc/lava-server/dispatcher-config/devices/db410c-uboot0.jinja2
 
 COPY configs/tftpd-hpa /etc/default/tftpd-hpa
 
