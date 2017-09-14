@@ -1,6 +1,6 @@
 {% extends 'base-uboot.jinja2' %}
 
-{% set console_device = console_device|default('tty0') %}
+{% set console_device = console_device|default('ttyMSM0') %}
 {% set baud_rate = baud_rate|default(115200) %}
 {% set device_type = "dragonboard-410c-uboot" %}
 {% set bootloader_prompt = bootloader_prompt|default('dragonboard410c') %}
@@ -9,5 +9,13 @@
 {% set usb_uuid = usb_uuid|default('') %}
 {% set usb_device_id = usb_device_id|default('') %}
 {% set uboot_mkimage_arch = 'arm64' %}
-{% set uboot_bootx_cmd = "booti {KERNEL_ADDR} {DTB_ADDR}" %}
+{% set uboot_bootx_cmd = "booti {KERNEL_ADDR} - {DTB_ADDR}" %}
 {% set uboot_needs_usb = true %}
+
+{% set run_load_fdt = "run loadfdt; " %}
+{% set load_fdt = "          - setenv loadfdt 'tftp {DTB_ADDR} {DTB}'" %}
+
+{% set uboot_tftp_commands = (
+"          - setenv loadkernel 'tftp {KERNEL_ADDR} {KERNEL}'
+          - setenv loadinitrd ''
+" + load_fdt) %}
