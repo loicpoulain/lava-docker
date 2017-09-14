@@ -1,0 +1,13 @@
+{% extends 'base-uboot.jinja2' %}
+
+{% set console_device = console_device|default('tty0') %}
+{% set baud_rate = baud_rate|default(115200) %}
+{% set device_type = "dragonboard-410c-uboot" %}
+{% set bootloader_prompt = bootloader_prompt|default('dragonboard410c') %}
+{% set booti_kernel_addr = '0x90000000' %}
+{% set booti_dtb_addr = '0x89000000' %}
+{% set usb_uuid = usb_uuid|default('') %}
+{% set usb_device_id = usb_device_id|default('') %}
+{% set uboot_mkimage_arch = 'arm64' %}
+{% set uboot_bootx_cmd = "booti {KERNEL_ADDR} {DTB_ADDR}" %}
+{% set uboot_needs_usb = true %}
