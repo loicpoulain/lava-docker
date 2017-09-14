@@ -1,0 +1,44 @@
+
+device_type: dragonboard-410c-uboot
+job_name: standard dragonboard test
+timeouts:
+  job:
+    minutes: 10
+  action:
+    minutes: 5
+  connection:
+    minutes: 2
+priority: medium
+visibility: public
+# ACTION_BLOCK
+actions:
+- deploy:
+    timeout:
+      minutes: 30
+    to: tftp
+    kernel:
+      url: http://builds.96boards.org/releases/dragonboard410c/linaro/openembedded/17.06.1/rpb/Image--4.9-r0-dragonboard-410c-20170803175648-18.bin
+      type: image
+    os: debian
+    dtb:
+      url: http://builds.96boards.org/releases/dragonboard410c/linaro/openembedded/17.06.1/rpb/Image--4.9-r0-apq8016-sbc-20170803175648-18.dtb
+    nfsrootfs:
+       url: http://builds.96boards.org/releases/dragonboard410c/linaro/openembedded/17.06.1/rpb/rpb-console-image-dragonboard-410c-20170803175648-18.rootfs.tar.xz
+       compression: xz
+- boot:
+    method: u-boot
+    commands: nfs
+    prompts:
+      - 'linaro-test'
+      - 'root@debian:~#'
+    timeout:
+      minutes: 2
+# TEST_BLOCK
+- test:
+    timeout:
+      minutes: 5
+    definitions:
+    - repository: http://git.linaro.org/lava-team/lava-functional-tests.git
+      from: git
+      path: lava-test-shell/smoke-tests-basic.yaml
+      name: smoke-tests 
