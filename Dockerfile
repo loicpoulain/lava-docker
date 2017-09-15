@@ -72,12 +72,15 @@ RUN /start.sh \
  && /stop.sh
 
 # Add device-types
-COPY configs/dragonboard-410c-uboot.jinja2 /etc/lava-server/dispatcher-config/devices/dragonboard-410c-uboot.jinja2
+COPY configs/dragonboard-410c-uboot.jinja2 /etc/lava-server/dispatcher-config/device-types/dragonboard-410c-uboot.jinja2
 
 # Add device dictionnaries
 COPY configs/qemu0.jinja2 /etc/lava-server/dispatcher-config/devices/qemu0.jinja2
 COPY configs/bbb0.jinja2 /etc/lava-server/dispatcher-config/devices/bbb0.jinja2
 COPY configs/db410c-uboot0.jinja2 /etc/lava-server/dispatcher-config/devices/db410c-uboot0.jinja2
+
+# NFS export workaround
+COPY configs/lava-dispatcher-nfs.exports /etc/exports.d/lava-dispatcher-nfs.exports
 
 COPY configs/tftpd-hpa /etc/default/tftpd-hpa
 
