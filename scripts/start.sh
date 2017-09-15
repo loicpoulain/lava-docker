@@ -34,6 +34,7 @@ start lava-coordinator
 start lava-slave
 start lava-server-gunicorn
 start tftpd-hpa
+start rpcbind
 start nfs-kernel-server
 
 postgres-ready
