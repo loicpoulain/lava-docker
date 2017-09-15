@@ -82,6 +82,9 @@ COPY configs/db410c-uboot0.jinja2 /etc/lava-server/dispatcher-config/devices/db4
 # NFS export workaround
 COPY configs/lava-dispatcher-nfs.exports /etc/exports.d/lava-dispatcher-nfs.exports
 
+# fixed port for rpc.mount
+COPY configs/nfs-kernel-server /etc/default/nfs-kernel-server
+
 COPY configs/tftpd-hpa /etc/default/tftpd-hpa
 
 EXPOSE 69/udp 80 3079 5555 5556
