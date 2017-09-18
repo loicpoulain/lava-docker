@@ -85,7 +85,11 @@ COPY configs/lava-dispatcher-nfs.exports /etc/exports.d/lava-dispatcher-nfs.expo
 # fixed port for rpc.mount
 COPY configs/nfs-kernel-server /etc/default/nfs-kernel-server
 
+# TFTP config
 COPY configs/tftpd-hpa /etc/default/tftpd-hpa
+
+# Simple relay controller
+COPY configs/relay.sh /usr/bin/relay.sh
 
 EXPOSE 69/udp 80 3079 5555 5556
 
