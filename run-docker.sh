@@ -10,5 +10,5 @@ sudo docker run -it --rm \
     -p 2049:2049 -p 111:111 -p 2049:2049/udp -p 111:111/udp \
     -p 4242:4242 -p 4242:4242/udp \
     -e "HOST_IP=${HOST_IP}" -e "HOST=${HOSTNAME}" \
-    -h ${HOSTNAME} --privileged lava-docker
+    -h ${HOSTNAME} --privileged lava-docker-stretch
 
